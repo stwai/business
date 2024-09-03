@@ -1,170 +1,237 @@
-{% extends "base.html" %}
+{% extends "index.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/business_details.css') }}">
+{% endblock %}
 
 {% block content %}
     <h2>Enter Business Details</h2>
+
+    <!-- Tab Navigation -->
+    <div class="tab">
+        <button class="tablinks active" data-tab="tab1">Basic Information</button>
+        <button class="tablinks" data-tab="tab2">Company Background</button>
+        <button class="tablinks" data-tab="tab3">Financial Information</button>
+        <button class="tablinks" data-tab="tab4">Profit and Cash Flow</button>
+        <button class="tablinks" data-tab="tab5">Expenses and Submission</button>
+    </div>
+
     <form method="POST" action="{{ url_for('business_details') }}">
         {{ form.hidden_tag() }}
-        
-        <!-- Row 1 -->
-        <div class="form-row">
-            <div class="form-group">
-                {{ form.business_name.label }}
-                {{ form.business_name(class="form-control") }}
+
+        <!-- Tab 1 -->
+        <div class="tabcontent active" id="tab1">
+            <h3 class="section-title">Basic Information</h3>
+            <div class="form-row">
+                <div class="form-group">
+                    {{ form.business_name.label }}
+                    {{ form.business_name(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.business_type.label }}
+                    {{ form.business_type(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.industry.label }}
+                    {{ form.industry(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.mission_statement.label }}
+                    {{ form.mission_statement(class="form-control", rows="3") }}
+                </div>
+                <div class="form-group">
+                    {{ form.vision_statement.label }}
+                    {{ form.vision_statement(class="form-control", rows="3") }}
+                </div>
             </div>
-            <div class="form-group">
-                {{ form.business_type.label }}
-                {{ form.business_type(class="form-control") }}
-            </div>
-            <div class="form-group">
-                {{ form.industry.label }}
-                {{ form.industry(class="form-control") }}
+            <div class="form-navigation">
+                <button type="button" class="next-tab" data-next="tab2">Next &rarr;</button>
             </div>
         </div>
 
-        <!-- Row 2 -->
-        <div class="form-row">
-            <div class="form-group">
-                {{ form.mission_statement.label }}
-                {{ form.mission_statement(class="form-control", rows="3") }}
+        <!-- Tab 2 -->
+        <div class="tabcontent" id="tab2">
+            <h3 class="section-title">Company Background</h3>
+            <div class="form-row">
+                <div class="form-group">
+                    {{ form.founded.label }}
+                    {{ form.founded(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.founders.label }}
+                    {{ form.founders(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.location.label }}
+                    {{ form.location(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.number_of_employees.label }}
+                    {{ form.number_of_employees(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.business_stage.label }}
+                    {{ form.business_stage(class="form-control") }}
+                </div>
             </div>
-            <div class="form-group">
-                {{ form.vision_statement.label }}
-                {{ form.vision_statement(class="form-control", rows="3") }}
-            </div>
-        </div>
-        
-        <!-- Row 3 -->
-        <div class="form-row">
-            <div class="form-group">
-                {{ form.founded.label }}
-                {{ form.founded(class="form-control") }}
-            </div>
-            <div class="form-group">
-                {{ form.founders.label }}
-                {{ form.founders(class="form-control") }}
-            </div>
-            <div class="form-group">
-                {{ form.location.label }}
-                {{ form.location(class="form-control") }}
-            </div>
-        </div>
-
-        <!-- Row 4 -->
-        <div class="form-row">
-            <div class="form-group">
-                {{ form.number_of_employees.label }}
-                {{ form.number_of_employees(class="form-control") }}
-            </div>
-            <div class="form-group">
-                {{ form.business_stage.label }}
-                {{ form.business_stage(class="form-control") }}
-            </div>
-            <div class="form-group">
-                {{ form.business_model.label }}
-                {{ form.business_model(class="form-control") }}
+            <div class="form-navigation">
+                <button type="button" class="prev-tab" data-prev="tab1">&larr; Previous</button>
+                <button type="button" class="next-tab" data-next="tab3">Next &rarr;</button>
             </div>
         </div>
 
-        <!-- Row 5 -->
-        <div class="form-row">
-            <div class="form-group">
-                {{ form.turnover_year1.label }}
-                {{ form.turnover_year1(class="form-control") }}
+        <!-- Tab 3 -->
+        <div class="tabcontent" id="tab3">
+            <h3 class="section-title">Financial Information</h3>
+            <div class="form-row">
+                <div class="form-group">
+                    {{ form.business_model.label }}
+                    {{ form.business_model(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.turnover_year1.label }}
+                    {{ form.turnover_year1(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.turnover_year2.label }}
+                    {{ form.turnover_year2(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.turnover_year3.label }}
+                    {{ form.turnover_year3(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.turnover_year4.label }}
+                    {{ form.turnover_year4(class="form-control") }}
+                </div>
             </div>
-            <div class="form-group">
-                {{ form.turnover_year2.label }}
-                {{ form.turnover_year2(class="form-control") }}
-            </div>
-            <div class="form-group">
-                {{ form.turnover_year3.label }}
-                {{ form.turnover_year3(class="form-control") }}
-            </div>
-        </div>
-
-        <!-- Row 6 -->
-        <div class="form-row">
-            <div class="form-group">
-                {{ form.turnover_year4.label }}
-                {{ form.turnover_year4(class="form-control") }}
-            </div>
-            <div class="form-group">
-                {{ form.gross_profit.label }}
-                {{ form.gross_profit(class="form-control") }}
-            </div>
-            <div class="form-group">
-                {{ form.net_profit.label }}
-                {{ form.net_profit(class="form-control") }}
-            </div>
-        </div>
-
-        <!-- Row 7 -->
-        <div class="form-row">
-            <div class="form-group">
-                {{ form.monthly_inflow.label }}
-                {{ form.monthly_inflow(class="form-control") }}
-            </div>
-            <div class="form-group">
-                {{ form.monthly_outflow.label }}
-                {{ form.monthly_outflow(class="form-control") }}
-            </div>
-            <div class="form-group">
-                {{ form.monthly_cashflow.label }}
-                {{ form.monthly_cashflow(class="form-control") }}
+            <div class="form-navigation">
+                <button type="button" class="prev-tab" data-prev="tab2">&larr; Previous</button>
+                <button type="button" class="next-tab" data-next="tab4">Next &rarr;</button>
             </div>
         </div>
 
-        <!-- Row 8 -->
-        <div class="form-row">
-            <div class="form-group">
-                {{ form.fixed_expense1.label }}
-                {{ form.fixed_expense1(class="form-control") }}
+        <!-- Tab 4 -->
+        <div class="tabcontent" id="tab4">
+            <h3 class="section-title">Profit and Cash Flow</h3>
+            <div class="form-row">
+                <div class="form-group">
+                    {{ form.gross_profit.label }}
+                    {{ form.gross_profit(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.net_profit.label }}
+                    {{ form.net_profit(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.monthly_inflow.label }}
+                    {{ form.monthly_inflow(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.monthly_outflow.label }}
+                    {{ form.monthly_outflow(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.monthly_cashflow.label }}
+                    {{ form.monthly_cashflow(class="form-control") }}
+                </div>
             </div>
-            <div class="form-group">
-                {{ form.fixed_expense2.label }}
-                {{ form.fixed_expense2(class="form-control") }}
-            </div>
-            <div class="form-group">
-                {{ form.fixed_expense3.label }}
-                {{ form.fixed_expense3(class="form-control") }}
-            </div>
-        </div>
-
-        <!-- Row 9 -->
-        <div class="form-row">
-            <div class="form-group">
-                {{ form.fixed_expense4.label }}
-                {{ form.fixed_expense4(class="form-control") }}
-            </div>
-            <div class="form-group">
-                {{ form.variable_expenses.label }}
-                {{ form.variable_expenses(class="form-control") }}
-            </div>
-            <div class="form-group">
-                {{ form.cash_flow_projection.label }}
-                {{ form.cash_flow_projection(class="form-control") }}
-            </div>
-        </div>
-
-        <!-- Row 10 -->
-        <div class="form-row">
-            <div class="form-group">
-                {{ form.overdraft_limit.label }}
-                {{ form.overdraft_limit(class="form-control") }}
+            <div class="form-navigation">
+                <button type="button" class="prev-tab" data-prev="tab3">&larr; Previous</button>
+                <button type="button" class="next-tab" data-next="tab5">Next &rarr;</button>
             </div>
         </div>
 
-        <!-- Submit Button -->
-        <div class="form-row">
-            <div class="form-group full-width">
-                {{ form.submit(class="btn-submit") }}
+        <!-- Tab 5 -->
+        <div class="tabcontent" id="tab5">
+            <h3 class="section-title">Expenses and Submission</h3>
+            <div class="form-row">
+                <div class="form-group">
+                    {{ form.fixed_expense1.label }}
+                    {{ form.fixed_expense1(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.fixed_expense2.label }}
+                    {{ form.fixed_expense2(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.fixed_expense3.label }}
+                    {{ form.fixed_expense3(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.fixed_expense4.label }}
+                    {{ form.fixed_expense4(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.variable_expenses.label }}
+                    {{ form.variable_expenses(class="form-control") }}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    {{ form.cash_flow_projection.label }}
+                    {{ form.cash_flow_projection(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.overdraft_limit.label }}
+                    {{ form.overdraft_limit(class="form-control") }}
+                </div>
+            </div>
+            <div class="form-navigation">
+                <button type="button" class="prev-tab" data-prev="tab4">&larr; Previous</button>
+                <button type="submit" class="btn-submit">Submit</button>
             </div>
         </div>
     </form>
+{% endblock %}
 
-    <!-- Button to View All Business Details -->
-    <div class="form-row">
-        <div class="form-group full-width">
-            <a href="{{ url_for('view_business_details') }}" class="btn btn-info">View All Business Details</a>
-        </div>
-    </div>
+{% block scripts %}
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Show the first tab content
+        document.querySelectorAll('.tabcontent').forEach(function(tabcontent) {
+            tabcontent.classList.remove('active');
+        });
+        document.querySelector('.tabcontent').classList.add('active');
+
+        // Handle tab navigation buttons
+        document.querySelectorAll('.next-tab').forEach(function(button) {
+            button.addEventListener('click', function() {
+                var nextTabId = this.getAttribute('data-next');
+                switchTab(nextTabId);
+            });
+        });
+
+        document.querySelectorAll('.prev-tab').forEach(function(button) {
+            button.addEventListener('click', function() {
+                var prevTabId = this.getAttribute('data-prev');
+                switchTab(prevTabId);
+            });
+        });
+
+        function switchTab(tabId) {
+            // Hide all tab contents
+            document.querySelectorAll('.tabcontent').forEach(function(tabcontent) {
+                tabcontent.classList.remove('active');
+            });
+
+            // Remove active class from all tab buttons
+            document.querySelectorAll('.tablinks').forEach(function(tablink) {
+                tablink.classList.remove('active');
+            });
+
+            // Show the target tab content
+            document.getElementById(tabId).classList.add('active');
+
+            // Set the corresponding tab button to active
+            document.querySelector('[data-tab="' + tabId + '"]').classList.add('active');
+
+            // Scroll to the top of the new tab
+            window.scrollTo({
+                top: document.getElementById(tabId).offsetTop,
+                behavior: 'smooth'
+            });
+        }
+    });
+</script>
 {% endblock %}
